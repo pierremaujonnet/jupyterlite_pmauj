@@ -25,6 +25,10 @@ jobs:
         run: |
           cp README.md content
           jupyter lite build --contents content --output-dir dist
+      - name: Copier la page des activités
+        run: |
+          cp activites.html dist/
+          cp activites.css dist/ 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
