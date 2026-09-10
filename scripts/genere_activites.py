@@ -2,10 +2,8 @@ from pathlib import Path
 import json
 import html
 
-# Dossier contenant les notebooks
 DOSSIER_CONTENT = Path("content")
 
-# Seuls ces sous-dossiers seront publiés
 DOSSIERS_PUBLICS = [
     "cours",
     "exercices",
@@ -13,25 +11,13 @@ DOSSIERS_PUBLICS = [
     "activites"
 ]
 
-# Fichier HTML généré à la racine du dépôt
 FICHIER_SORTIE = Path("activites.html")
 
 
 def informations_notebook(fichier):
-    """
-    Récupère le titre et la description du notebook.
-
-    Le titre est recherché dans la première cellule Markdown
-    commençant par '# '.
-
-    Le premier paragraphe situé après le titre est utilisé
-    comme description.
-    """
-
     with open(fichier, encoding="utf-8") as f:
         notebook = json.load(f)
 
-    # Valeurs par défaut
     titre = fichier.stem.replace("_", " ").replace("-", " ").title()
     description = ""
 
@@ -60,9 +46,6 @@ def informations_notebook(fichier):
 
 
 def nom_affiche(nom):
-    """
-    Rend un nom de dossier plus lisible.
-    """
     return nom.replace("_", " ").replace("-", " ").title()
 
 
@@ -79,9 +62,7 @@ for categorie in DOSSIERS_PUBLICS:
 
         titre, description = informations_notebook(fichier)
 
-        # Chemin relatif à content/
         chemin_relatif = fichier.relative_to(DOSSIER_CONTENT)
-
         parties = chemin_relatif.parts
 
         categorie_affichee = nom_affiche(parties[0])
@@ -91,8 +72,6 @@ for categorie in DOSSIERS_PUBLICS:
         else:
             niveau = ""
 
-        # Exemple :
-        # cours/initiation-a-matplotlib.ipynb
         chemin_jupyter = "/".join(parties)
 
         niveau_html = ""
@@ -109,9 +88,13 @@ for categorie in DOSSIERS_PUBLICS:
                 f"<p>{html.escape(description)}</p>"
             )
 
-        # Le chemin est passé au JavaScript
         chemin_js = html.escape(
             chemin_jupyter,
+            quote=True
+        )
+
+        titre_js = html.escape(
+            titre,
             quote=True
         )
 
@@ -131,7 +114,7 @@ for categorie in DOSSIERS_PUBLICS:
 
                 <button
                     type="button"
-                    onclick="ouvrirActivite('{chemin_js}')"
+                    onclick="ouvrirActivite('{chemin_js}', '{titre_js}')"
                 >
                     Ouvrir
                 </button>
@@ -142,6 +125,7 @@ for categorie in DOSSIERS_PUBLICS:
 
 
 page = f"""<!DOCTYPE html>
+
 <html lang="fr">
 
 <head>
@@ -173,8 +157,6 @@ page = f"""<!DOCTYPE html>
     </div>
 
 
-    <!-- Fenêtre surgissante -->
-
     <div
         id="modal"
         class="modal"
@@ -195,8 +177,10 @@ page = f"""<!DOCTYPE html>
             <iframe
                 id="iframe-jupyter"
                 title="Activité Jupyter"
-                allow="cross-origin-isolated"
-            >
+                width="100%"
+                height="850"
+                style="border: 1px solid #ddd;"
+                allow="cross-origin-isolated">
             </iframe>
 
         </div>
@@ -206,7 +190,7 @@ page = f"""<!DOCTYPE html>
 
     <script>
 
-        function ouvrirActivite(path) {{
+        function ouvrirActivite(path, titre) {{
 
             const iframe =
                 document.getElementById("iframe-jupyter");
@@ -214,6 +198,8 @@ page = f"""<!DOCTYPE html>
             iframe.src =
                 "https://pierremaujonnet.github.io/jupyterlite_pmauj/notebooks/index.html?path="
                 + encodeURIComponent(path);
+
+            iframe.title = titre;
 
             document
                 .getElementById("modal")
