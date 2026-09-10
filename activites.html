@@ -22,265 +22,379 @@
 
 <body>
 
-    <h1>Activités numériques</h1>
+    <h1>
+        Activités numériques
+    </h1>
 
-    <div class="grille">
+
+    <nav class="menu">
 
         
-            <article class="carte">
+        <div class="menu-principal">
 
-                <div class="categorie">
-                    Cours
-                </div>
+            <div class="titre-menu-principal">
+                Cours
+            </div>
 
-                <div class="niveau">Bibliotheques Utiles</div>
-
-                <h2>Qu&#x27;est-ce que NumPy ?</h2>
-
-                
-
+            <ul>
+        
+            <li>
                 <button
+                    class="bouton-dossier"
                     type="button"
-                    onclick="ouvrirActivite('cours/Bibliotheques_utiles/bibliotheque-numpy.ipynb', 'Qu&#x27;est-ce que NumPy ?')"
+                    onclick="afficherDossier('dossier-cours')"
                 >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
                     Cours
-                </div>
-
-                <div class="niveau">Bibliotheques Utiles</div>
-
-                <h2>Qu&#x27;est-ce que SymPy ?</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Bibliotheques_utiles/bibliotheque-sympy.ipynb', 'Qu&#x27;est-ce que SymPy ?')"
-                >
-                    Ouvrir
                 </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                <div class="niveau">Bibliotheques Utiles</div>
-
-                <h2>Qu&#x27;est-ce que Matplotlib ?</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Bibliotheques_utiles/initiation-a-matplotlib.ipynb', 'Qu&#x27;est-ce que Matplotlib ?')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                <div class="niveau">Instructions Conditionnelles Et Boucles</div>
-
-                <h2>Boucle `while`</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Instructions_conditionnelles_et_boucles/boucles.ipynb', 'Boucle `while`')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                <div class="niveau">Instructions Conditionnelles Et Boucles</div>
-
-                <h2>Instructions conditionnelles</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Instructions_conditionnelles_et_boucles/instructions-conditionnelles-et-variables-booleennes.ipynb', 'Instructions conditionnelles')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                <div class="niveau">Par Theme</div>
-
-                <h2>Calculs usuels</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Par_theme/python-pour-les-suites.ipynb', 'Calculs usuels')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                
-
-                <h2>Synthese Instructions Python</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/synthese-instructions-python.ipynb', 'Synthese Instructions Python')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                <div class="niveau">Variables Et Fonctions</div>
-
-                <h2>Création d&#x27;une chaîne de caractères</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Variables_et_fonctions/chaines-de-caracteres.ipynb', 'Création d&#x27;une chaîne de caractères')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                <div class="niveau">Variables Et Fonctions</div>
-
-                <h2>Fonctions en Python</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Variables_et_fonctions/fonctions-en-python.ipynb', 'Fonctions en Python')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                <div class="niveau">Variables Et Fonctions</div>
-
-                <h2>Création d&#x27;une liste - Accès aux éléments</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Variables_et_fonctions/listes-en-python.ipynb', 'Création d&#x27;une liste - Accès aux éléments')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <div class="categorie">
-                    Cours
-                </div>
-
-                <div class="niveau">Variables Et Fonctions</div>
-
-                <h2>Types Et Variables</h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite('cours/Variables_et_fonctions/types-et-variables.ipynb', 'Types Et Variables')"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-
-    </div>
-
-
-    <div
-        id="modal"
-        class="modal"
-        onclick="fermerSiFond(event)"
-    >
-
-        <div class="modal-contenu">
-
+            </li>
+            <li>
             <button
+                class="bouton-dossier"
                 type="button"
-                class="fermer"
-                onclick="fermerActivite()"
-                title="Fermer"
+                onclick="afficherDossier('dossier-cours-Bibliotheques-utiles')"
             >
-                ×
+                Bibliotheques Utiles
             </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('dossier-cours-Instructions-conditionnelles-et-boucles')"
+            >
+                Instructions Conditionnelles Et Boucles
+            </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('dossier-cours-Par-theme')"
+            >
+                Par Theme
+            </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('dossier-cours-Variables-et-fonctions')"
+            >
+                Variables Et Fonctions
+            </button>
+            </li>
+            </ul>
+        </div>
+        
+
+    </nav>
+
+
+    <main>
+
+        
+            <section
+                id="dossier-cours"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Cours
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Synthese Instructions Python
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/synthese-instructions-python.ipynb',
+                        'Synthese Instructions Python'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-cours-Bibliotheques-utiles"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Cours / Bibliotheques Utiles
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Qu&#x27;est-ce que NumPy ?
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Bibliotheques_utiles/bibliotheque-numpy.ipynb',
+                        'Qu&#x27;est-ce que NumPy ?'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Qu&#x27;est-ce que SymPy ?
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Bibliotheques_utiles/bibliotheque-sympy.ipynb',
+                        'Qu&#x27;est-ce que SymPy ?'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Qu&#x27;est-ce que Matplotlib ?
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Bibliotheques_utiles/initiation-a-matplotlib.ipynb',
+                        'Qu&#x27;est-ce que Matplotlib ?'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-cours-Instructions-conditionnelles-et-boucles"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Cours / Instructions Conditionnelles Et Boucles
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Boucle `while`
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Instructions_conditionnelles_et_boucles/boucles.ipynb',
+                        'Boucle `while`'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Instructions conditionnelles
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Instructions_conditionnelles_et_boucles/instructions-conditionnelles-et-variables-booleennes.ipynb',
+                        'Instructions conditionnelles'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-cours-Par-theme"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Cours / Par Theme
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Calculs usuels
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Par_theme/python-pour-les-suites.ipynb',
+                        'Calculs usuels'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-cours-Variables-et-fonctions"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Cours / Variables Et Fonctions
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Création d&#x27;une chaîne de caractères
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Variables_et_fonctions/chaines-de-caracteres.ipynb',
+                        'Création d&#x27;une chaîne de caractères'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Fonctions en Python
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Variables_et_fonctions/fonctions-en-python.ipynb',
+                        'Fonctions en Python'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Création d&#x27;une liste - Accès aux éléments
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Variables_et_fonctions/listes-en-python.ipynb',
+                        'Création d&#x27;une liste - Accès aux éléments'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Types Et Variables
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        'cours/Variables_et_fonctions/types-et-variables.ipynb',
+                        'Types Et Variables'
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+
+
+        <div
+            id="zone-jupyter"
+            class="zone-jupyter"
+        >
 
             <iframe
                 id="iframe-jupyter"
+                src=""
                 title="Activité Jupyter"
                 width="100%"
                 height="850"
@@ -290,58 +404,100 @@
 
         </div>
 
-    </div>
+    </main>
 
 
     <script>
 
-        function ouvrirActivite(path, titre) {
+        const URL_JUPYTERLITE =
+            "https://pierremaujonnet.github.io/jupyterlite_pmauj/notebooks/index.html?path=";
 
-            const iframe =
-                document.getElementById("iframe-jupyter");
 
-            iframe.src =
-                "https://pierremaujonnet.github.io/jupyterlite_pmauj/notebooks/index.html?path="
-                + encodeURIComponent(path);
-
-            iframe.title = titre;
+        function afficherDossier(id) {
 
             document
-                .getElementById("modal")
-                .style.display = "flex";
+                .querySelectorAll(".section-cartes")
+                .forEach(section => {
+                    section.style.display = "none";
+                });
 
-            document.body.style.overflow = "hidden";
-        }
+            const section =
+                document.getElementById(id);
 
+            if (section) {
 
-        function fermerActivite() {
+                section.style.display = "block";
 
-            document
-                .getElementById("modal")
-                .style.display = "none";
-
-            document
-                .getElementById("iframe-jupyter")
-                .src = "";
-
-            document.body.style.overflow = "";
-        }
-
-
-        function fermerSiFond(event) {
-
-            if (event.target.id === "modal") {
                 fermerActivite();
             }
         }
 
 
-        document.addEventListener(
-            "keydown",
-            function(event) {
+        function ouvrirActivite(path, titre) {
 
-                if (event.key === "Escape") {
-                    fermerActivite();
+            const iframe =
+                document.getElementById(
+                    "iframe-jupyter"
+                );
+
+            iframe.src =
+                URL_JUPYTERLITE
+                + encodeURIComponent(path);
+
+            iframe.title = titre;
+
+            const zone =
+                document.getElementById(
+                    "zone-jupyter"
+                );
+
+            zone.style.display = "block";
+
+            zone.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
+
+        function fermerActivite() {
+
+            const zone =
+                document.getElementById(
+                    "zone-jupyter"
+                );
+
+            const iframe =
+                document.getElementById(
+                    "iframe-jupyter"
+                );
+
+            zone.style.display = "none";
+
+            iframe.src = "";
+        }
+
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                document
+                    .querySelectorAll(
+                        ".section-cartes"
+                    )
+                    .forEach(section => {
+                        section.style.display =
+                            "none";
+                    });
+
+                const premier =
+                    "dossier-cours";
+
+                if (premier) {
+                    afficherDossier(
+                        premier
+                    );
                 }
             }
         );

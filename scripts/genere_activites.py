@@ -2,7 +2,9 @@ from pathlib import Path
 import json
 import html
 
-DOSSIER_CONTENT = Path("content")
+# ============================================================
+# À MODIFIER UNIQUEMENT ICI
+# ============================================================
 
 DOSSIERS_PUBLICS = [
     "cours",
@@ -11,21 +13,52 @@ DOSSIERS_PUBLICS = [
     "activites"
 ]
 
+# ============================================================
+# NE PLUS TOUCHER AU RESTE
+# ============================================================
+
+DOSSIER_CONTENT = Path("content")
 FICHIER_SORTIE = Path("activites.html")
+
+URL_JUPYTERLITE = (
+    "https://pierremaujonnet.github.io/"
+    "jupyterlite_pmauj/notebooks/index.html?path="
+)
+
+
+def nom_affiche(nom):
+    """
+    Transforme un nom de dossier en texte lisible.
+    """
+    return (
+        nom
+        .replace("_", " ")
+        .replace("-", " ")
+        .strip()
+        .title()
+    )
 
 
 def informations_notebook(fichier):
+    """
+    Cherche le titre et la description dans la première
+    cellule Markdown commençant par '# '.
+    """
+
     with open(fichier, encoding="utf-8") as f:
         notebook = json.load(f)
 
-    titre = fichier.stem.replace("_", " ").replace("-", " ").title()
+    titre = nom_affiche(fichier.stem)
     description = ""
 
     for cellule in notebook.get("cells", []):
+
         if cellule.get("cell_type") != "markdown":
             continue
 
-        texte = "".join(cellule.get("source", [])).strip()
+        texte = "".join(
+            cellule.get("source", [])
+        ).strip()
 
         if not texte:
             continue
@@ -33,88 +66,157 @@ def informations_notebook(fichier):
         lignes = texte.splitlines()
 
         if lignes[0].startswith("# "):
+
             titre = lignes[0][2:].strip()
 
-            reste = "\n".join(lignes[1:]).strip()
+            reste = "\n".join(
+                lignes[1:]
+            ).strip()
 
             if reste:
-                description = reste.split("\n\n")[0].strip()
+                description = (
+                    reste
+                    .split("\n\n")[0]
+                    .strip()
+                )
 
             break
 
     return titre, description
 
 
-def nom_affiche(nom):
-    return nom.replace("_", " ").replace("-", " ").title()
+def identifiant_dossier(dossier):
+    """
+    Fabrique un identifiant HTML unique à partir
+    du chemin relatif à content/.
+    """
+
+    relatif = dossier.relative_to(DOSSIER_CONTENT)
+
+    return (
+        "dossier-"
+        + "-".join(relatif.parts)
+        .replace("_", "-")
+        .replace(" ", "-")
+    )
 
 
-cartes = []
+def creer_menu_dossier(dossier):
+    """
+    Génère récursivement le menu HTML correspondant
+    à un dossier et à ses sous-dossiers.
+    """
 
-for categorie in DOSSIERS_PUBLICS:
+    sous_dossiers = sorted(
+        [
+            element
+            for element in dossier.iterdir()
+            if element.is_dir()
+        ],
+        key=lambda p: p.name.lower()
+    )
 
-    dossier_categorie = DOSSIER_CONTENT / categorie
+    notebooks = list(
+        dossier.glob("*.ipynb")
+    )
 
-    if not dossier_categorie.exists():
-        continue
+    contenu = []
 
-    for fichier in sorted(dossier_categorie.rglob("*.ipynb")):
+    # Si le dossier contient directement des notebooks,
+    # son nom devient cliquable.
+    if notebooks:
 
-        titre, description = informations_notebook(fichier)
+        id_dossier = identifiant_dossier(dossier)
 
-        chemin_relatif = fichier.relative_to(DOSSIER_CONTENT)
-        parties = chemin_relatif.parts
+        contenu.append(
+            f"""
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('{id_dossier}')"
+            >
+                {html.escape(nom_affiche(dossier.name))}
+            </button>
+            """
+        )
 
-        categorie_affichee = nom_affiche(parties[0])
+    else:
 
-        if len(parties) >= 3:
-            niveau = nom_affiche(parties[1])
-        else:
-            niveau = ""
+        contenu.append(
+            f"""
+            <span class="nom-dossier">
+                {html.escape(nom_affiche(dossier.name))}
+            </span>
+            """
+        )
 
-        chemin_jupyter = "/".join(parties)
+    # Sous-dossiers
+    if sous_dossiers:
 
-        niveau_html = ""
+        contenu.append('<ul class="sous-menu">')
 
-        if niveau:
-            niveau_html = (
-                f'<div class="niveau">{html.escape(niveau)}</div>'
+        for sous_dossier in sous_dossiers:
+
+            contenu.append("<li>")
+
+            contenu.append(
+                creer_menu_dossier(sous_dossier)
             )
+
+            contenu.append("</li>")
+
+        contenu.append("</ul>")
+
+    return "".join(contenu)
+
+
+def creer_cartes_dossier(dossier):
+    """
+    Génère les cartes correspondant aux notebooks
+    contenus directement dans un dossier.
+    """
+
+    cartes = []
+
+    for fichier in sorted(
+        dossier.glob("*.ipynb"),
+        key=lambda p: p.name.lower()
+    ):
+
+        titre, description = informations_notebook(
+            fichier
+        )
+
+        chemin_jupyter = "/".join(
+            fichier
+            .relative_to(DOSSIER_CONTENT)
+            .parts
+        )
 
         description_html = ""
 
         if description:
+
             description_html = (
                 f"<p>{html.escape(description)}</p>"
             )
-
-        chemin_js = html.escape(
-            chemin_jupyter,
-            quote=True
-        )
-
-        titre_js = html.escape(
-            titre,
-            quote=True
-        )
 
         cartes.append(
             f"""
             <article class="carte">
 
-                <div class="categorie">
-                    {html.escape(categorie_affichee)}
-                </div>
-
-                {niveau_html}
-
-                <h2>{html.escape(titre)}</h2>
+                <h2>
+                    {html.escape(titre)}
+                </h2>
 
                 {description_html}
 
                 <button
                     type="button"
-                    onclick="ouvrirActivite('{chemin_js}', '{titre_js}')"
+                    onclick="ouvrirActivite(
+                        '{html.escape(chemin_jupyter, quote=True)}',
+                        '{html.escape(titre, quote=True)}'
+                    )"
                 >
                     Ouvrir
                 </button>
@@ -123,6 +225,166 @@ for categorie in DOSSIERS_PUBLICS:
             """
         )
 
+    return "".join(cartes)
+
+
+# ============================================================
+# CONSTRUCTION DU MENU
+# ============================================================
+
+menu_html = []
+
+sections_html = []
+
+premier_dossier = None
+
+
+for nom_dossier_principal in DOSSIERS_PUBLICS:
+
+    dossier_principal = (
+        DOSSIER_CONTENT
+        / nom_dossier_principal
+    )
+
+    if not dossier_principal.exists():
+        continue
+
+    menu_html.append(
+        f"""
+        <div class="menu-principal">
+
+            <div class="titre-menu-principal">
+                {html.escape(nom_affiche(nom_dossier_principal))}
+            </div>
+
+            <ul>
+        """
+    )
+
+    sous_dossiers = sorted(
+        [
+            element
+            for element in dossier_principal.iterdir()
+            if element.is_dir()
+        ],
+        key=lambda p: p.name.lower()
+    )
+
+    # Notebooks directement dans le dossier principal
+    if list(dossier_principal.glob("*.ipynb")):
+
+        id_dossier = identifiant_dossier(
+            dossier_principal
+        )
+
+        menu_html.append(
+            f"""
+            <li>
+                <button
+                    class="bouton-dossier"
+                    type="button"
+                    onclick="afficherDossier('{id_dossier}')"
+                >
+                    {html.escape(nom_affiche(nom_dossier_principal))}
+                </button>
+            </li>
+            """
+        )
+
+        if premier_dossier is None:
+            premier_dossier = id_dossier
+
+    for sous_dossier in sous_dossiers:
+
+        menu_html.append("<li>")
+
+        menu_html.append(
+            creer_menu_dossier(sous_dossier)
+        )
+
+        menu_html.append("</li>")
+
+    menu_html.append(
+        """
+            </ul>
+        </div>
+        """
+    )
+
+
+# ============================================================
+# CONSTRUCTION DE TOUTES LES SECTIONS DE CARTES
+# ============================================================
+
+for nom_dossier_principal in DOSSIERS_PUBLICS:
+
+    dossier_principal = (
+        DOSSIER_CONTENT
+        / nom_dossier_principal
+    )
+
+    if not dossier_principal.exists():
+        continue
+
+    dossiers = [
+        dossier_principal,
+        *sorted(
+            [
+                d
+                for d in dossier_principal.rglob("*")
+                if d.is_dir()
+            ],
+            key=lambda p: str(p).lower()
+        )
+    ]
+
+    for dossier in dossiers:
+
+        notebooks = list(
+            dossier.glob("*.ipynb")
+        )
+
+        if not notebooks:
+            continue
+
+        id_dossier = identifiant_dossier(
+            dossier
+        )
+
+        if premier_dossier is None:
+            premier_dossier = id_dossier
+
+        chemin_affiche = " / ".join(
+            nom_affiche(partie)
+            for partie in
+            dossier.relative_to(
+                DOSSIER_CONTENT
+            ).parts
+        )
+
+        sections_html.append(
+            f"""
+            <section
+                id="{id_dossier}"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    {html.escape(chemin_affiche)}
+                </h2>
+
+                <div class="grille">
+                    {creer_cartes_dossier(dossier)}
+                </div>
+
+            </section>
+            """
+        )
+
+
+# ============================================================
+# PAGE HTML
+# ============================================================
 
 page = f"""<!DOCTYPE html>
 
@@ -148,34 +410,31 @@ page = f"""<!DOCTYPE html>
 
 <body>
 
-    <h1>Activités numériques</h1>
-
-    <div class="grille">
-
-        {''.join(cartes)}
-
-    </div>
+    <h1>
+        Activités numériques
+    </h1>
 
 
-    <div
-        id="modal"
-        class="modal"
-        onclick="fermerSiFond(event)"
-    >
+    <nav class="menu">
 
-        <div class="modal-contenu">
+        {''.join(menu_html)}
 
-            <button
-                type="button"
-                class="fermer"
-                onclick="fermerActivite()"
-                title="Fermer"
-            >
-                ×
-            </button>
+    </nav>
+
+
+    <main>
+
+        {''.join(sections_html)}
+
+
+        <div
+            id="zone-jupyter"
+            class="zone-jupyter"
+        >
 
             <iframe
                 id="iframe-jupyter"
+                src=""
                 title="Activité Jupyter"
                 width="100%"
                 height="850"
@@ -185,58 +444,100 @@ page = f"""<!DOCTYPE html>
 
         </div>
 
-    </div>
+    </main>
 
 
     <script>
 
-        function ouvrirActivite(path, titre) {{
+        const URL_JUPYTERLITE =
+            "{URL_JUPYTERLITE}";
 
-            const iframe =
-                document.getElementById("iframe-jupyter");
 
-            iframe.src =
-                "https://pierremaujonnet.github.io/jupyterlite_pmauj/notebooks/index.html?path="
-                + encodeURIComponent(path);
-
-            iframe.title = titre;
+        function afficherDossier(id) {{
 
             document
-                .getElementById("modal")
-                .style.display = "flex";
+                .querySelectorAll(".section-cartes")
+                .forEach(section => {{
+                    section.style.display = "none";
+                }});
 
-            document.body.style.overflow = "hidden";
-        }}
+            const section =
+                document.getElementById(id);
 
+            if (section) {{
 
-        function fermerActivite() {{
+                section.style.display = "block";
 
-            document
-                .getElementById("modal")
-                .style.display = "none";
-
-            document
-                .getElementById("iframe-jupyter")
-                .src = "";
-
-            document.body.style.overflow = "";
-        }}
-
-
-        function fermerSiFond(event) {{
-
-            if (event.target.id === "modal") {{
                 fermerActivite();
             }}
         }}
 
 
-        document.addEventListener(
-            "keydown",
-            function(event) {{
+        function ouvrirActivite(path, titre) {{
 
-                if (event.key === "Escape") {{
-                    fermerActivite();
+            const iframe =
+                document.getElementById(
+                    "iframe-jupyter"
+                );
+
+            iframe.src =
+                URL_JUPYTERLITE
+                + encodeURIComponent(path);
+
+            iframe.title = titre;
+
+            const zone =
+                document.getElementById(
+                    "zone-jupyter"
+                );
+
+            zone.style.display = "block";
+
+            zone.scrollIntoView({{
+                behavior: "smooth",
+                block: "start"
+            }});
+        }}
+
+
+        function fermerActivite() {{
+
+            const zone =
+                document.getElementById(
+                    "zone-jupyter"
+                );
+
+            const iframe =
+                document.getElementById(
+                    "iframe-jupyter"
+                );
+
+            zone.style.display = "none";
+
+            iframe.src = "";
+        }}
+
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {{
+
+                document
+                    .querySelectorAll(
+                        ".section-cartes"
+                    )
+                    .forEach(section => {{
+                        section.style.display =
+                            "none";
+                    }});
+
+                const premier =
+                    "{premier_dossier or ''}";
+
+                if (premier) {{
+                    afficherDossier(
+                        premier
+                    );
                 }}
             }}
         );
@@ -255,6 +556,5 @@ FICHIER_SORTIE.write_text(
 )
 
 print(
-    f"{len(cartes)} notebook(s) publié(s) dans "
-    f"{FICHIER_SORTIE}"
+    f"Page créée : {FICHIER_SORTIE}"
 )
