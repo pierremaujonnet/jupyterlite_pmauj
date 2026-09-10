@@ -453,6 +453,9 @@ page = f"""<!DOCTYPE html>
             "{URL_JUPYTERLITE}";
 
 
+        let activiteCourante = "";
+
+
         function afficherDossier(id) {{
 
             document
@@ -468,7 +471,6 @@ page = f"""<!DOCTYPE html>
 
                 section.style.display = "block";
 
-                fermerActivite();
             }}
         }}
 
@@ -480,16 +482,28 @@ page = f"""<!DOCTYPE html>
                     "iframe-jupyter"
                 );
 
-            iframe.src =
-                URL_JUPYTERLITE
-                + encodeURIComponent(path);
-
-            iframe.title = titre;
-
             const zone =
                 document.getElementById(
                     "zone-jupyter"
                 );
+
+            if (path === activiteCourante) {{
+
+                zone.scrollIntoView({{
+                    behavior: "smooth",
+                    block: "start"
+                }});
+
+                return;
+            }}
+
+            activiteCourante = path;
+
+            iframe.src =
+                URL_JUPYTERLITE
+                + encodeURI(path);
+
+            iframe.title = titre;
 
             zone.style.display = "block";
 
