@@ -102,7 +102,7 @@ for categorie in DOSSIERS_PUBLICS:
         # Chemin utilisé par JupyterLite
         chemin_jupyter = "/".join(parties)
 
-        lien = "../lab/index.html?path=" + chemin_jupyter
+        lien = "lab/index.html?path=" + chemin_jupyter
 
         niveau_html = ""
 
