@@ -214,8 +214,8 @@ def creer_cartes_dossier(dossier):
                 <button
                     type="button"
                     onclick="ouvrirActivite(
-                        '{html.escape(chemin_jupyter, quote=True)}',
-                        '{html.escape(titre, quote=True)}'
+                        {html.escape(json.dumps(chemin_jupyter), quote=True)},
+                        {html.escape(json.dumps(titre), quote=True)}
                     )"
                 >
                     Ouvrir
