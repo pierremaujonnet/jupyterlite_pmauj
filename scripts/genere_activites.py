@@ -13,7 +13,7 @@ DOSSIERS_PUBLICS = [
 
 
 # Fichier HTML généré
-FICHIER_SORTIE = Path("pages/activites.html")
+FICHIER_SORTIE = Path("activites.html")
 
 
 def informations_notebook(fichier):
