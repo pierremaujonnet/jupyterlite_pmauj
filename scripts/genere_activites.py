@@ -5,14 +5,15 @@ import html
 # Dossier contenant les notebooks
 DOSSIER_CONTENT = Path("content")
 
-# Seuls ces sous-dossiers seront affichés sur la page des activités
+# Seuls ces sous-dossiers seront publiés
 DOSSIERS_PUBLICS = [
-    "cours"
+    "cours",
+    "exercices",
+    "devoirs",
+    "activites"
 ]
 
-
-
-# Fichier HTML généré
+# Fichier HTML généré à la racine du dépôt
 FICHIER_SORTIE = Path("activites.html")
 
 
@@ -51,7 +52,6 @@ def informations_notebook(fichier):
             reste = "\n".join(lignes[1:]).strip()
 
             if reste:
-                # On ne conserve que le premier paragraphe
                 description = reste.split("\n\n")[0].strip()
 
             break
@@ -61,19 +61,17 @@ def informations_notebook(fichier):
 
 def nom_affiche(nom):
     """
-    Transforme un nom de dossier en texte plus lisible.
+    Rend un nom de dossier plus lisible.
     """
     return nom.replace("_", " ").replace("-", " ").title()
 
 
 cartes = []
 
-
 for categorie in DOSSIERS_PUBLICS:
 
     dossier_categorie = DOSSIER_CONTENT / categorie
 
-    # Si le dossier n'existe pas, on passe simplement au suivant
     if not dossier_categorie.exists():
         continue
 
@@ -81,16 +79,10 @@ for categorie in DOSSIERS_PUBLICS:
 
         titre, description = informations_notebook(fichier)
 
-        # Chemin du notebook relativement à content/
+        # Chemin relatif à content/
         chemin_relatif = fichier.relative_to(DOSSIER_CONTENT)
 
         parties = chemin_relatif.parts
-
-        # Exemple :
-        # content/exercices/premiere/suites.ipynb
-        #
-        # parties vaut :
-        # ("exercices", "premiere", "suites.ipynb")
 
         categorie_affichee = nom_affiche(parties[0])
 
@@ -99,10 +91,9 @@ for categorie in DOSSIERS_PUBLICS:
         else:
             niveau = ""
 
-        # Chemin utilisé par JupyterLite
+        # Exemple :
+        # cours/initiation-a-matplotlib.ipynb
         chemin_jupyter = "/".join(parties)
-
-        lien = "lab/index.html?path=" + chemin_jupyter
 
         niveau_html = ""
 
@@ -118,6 +109,12 @@ for categorie in DOSSIERS_PUBLICS:
                 f"<p>{html.escape(description)}</p>"
             )
 
+        # Le chemin est passé au JavaScript
+        chemin_js = html.escape(
+            chemin_jupyter,
+            quote=True
+        )
+
         cartes.append(
             f"""
             <article class="carte">
@@ -132,9 +129,12 @@ for categorie in DOSSIERS_PUBLICS:
 
                 {description_html}
 
-                <a href="{html.escape(lien)}" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('{chemin_js}')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             """
@@ -172,19 +172,97 @@ page = f"""<!DOCTYPE html>
 
     </div>
 
+
+    <!-- Fenêtre surgissante -->
+
+    <div
+        id="modal"
+        class="modal"
+        onclick="fermerSiFond(event)"
+    >
+
+        <div class="modal-contenu">
+
+            <button
+                type="button"
+                class="fermer"
+                onclick="fermerActivite()"
+                title="Fermer"
+            >
+                ×
+            </button>
+
+            <iframe
+                id="iframe-jupyter"
+                title="Activité Jupyter"
+                allow="cross-origin-isolated"
+            >
+            </iframe>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function ouvrirActivite(path) {{
+
+            const iframe =
+                document.getElementById("iframe-jupyter");
+
+            iframe.src =
+                "https://pierremaujonnet.github.io/jupyterlite_pmauj/notebooks/index.html?path="
+                + encodeURIComponent(path);
+
+            document
+                .getElementById("modal")
+                .style.display = "flex";
+
+            document.body.style.overflow = "hidden";
+        }}
+
+
+        function fermerActivite() {{
+
+            document
+                .getElementById("modal")
+                .style.display = "none";
+
+            document
+                .getElementById("iframe-jupyter")
+                .src = "";
+
+            document.body.style.overflow = "";
+        }}
+
+
+        function fermerSiFond(event) {{
+
+            if (event.target.id === "modal") {{
+                fermerActivite();
+            }}
+        }}
+
+
+        document.addEventListener(
+            "keydown",
+            function(event) {{
+
+                if (event.key === "Escape") {{
+                    fermerActivite();
+                }}
+            }}
+        );
+
+    </script>
+
 </body>
 
 </html>
 """
 
 
-# Création du dossier pages/ s'il n'existe pas
-FICHIER_SORTIE.parent.mkdir(
-    parents=True,
-    exist_ok=True
-)
-
-# Écriture du fichier HTML
 FICHIER_SORTIE.write_text(
     page,
     encoding="utf-8"

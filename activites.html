@@ -38,9 +38,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Bibliotheques_utiles/bibliotheque-numpy.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Bibliotheques_utiles/bibliotheque-numpy.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -56,9 +59,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Bibliotheques_utiles/bibliotheque-sympy.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Bibliotheques_utiles/bibliotheque-sympy.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -74,9 +80,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Bibliotheques_utiles/initiation-a-matplotlib.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Bibliotheques_utiles/initiation-a-matplotlib.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -92,9 +101,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Instructions_conditionnelles_et_boucles/boucles.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Instructions_conditionnelles_et_boucles/boucles.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -110,9 +122,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Instructions_conditionnelles_et_boucles/instructions-conditionnelles-et-variables-booleennes.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Instructions_conditionnelles_et_boucles/instructions-conditionnelles-et-variables-booleennes.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -128,9 +143,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Par_theme/python-pour-les-suites.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Par_theme/python-pour-les-suites.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -146,9 +164,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/synthese-instructions-python.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/synthese-instructions-python.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -164,9 +185,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Variables_et_fonctions/chaines-de-caracteres.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Variables_et_fonctions/chaines-de-caracteres.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -182,9 +206,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Variables_et_fonctions/fonctions-en-python.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Variables_et_fonctions/fonctions-en-python.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -200,9 +227,12 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Variables_et_fonctions/listes-en-python.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Variables_et_fonctions/listes-en-python.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
@@ -218,14 +248,102 @@
 
                 
 
-                <a href="lab/index.html?path=cours/Variables_et_fonctions/types-et-variables.ipynb" target="_blank">
+                <button
+                    type="button"
+                    onclick="ouvrirActivite('cours/Variables_et_fonctions/types-et-variables.ipynb')"
+                >
                     Ouvrir
-                </a>
+                </button>
 
             </article>
             
 
     </div>
+
+
+    <!-- Fenêtre surgissante -->
+
+    <div
+        id="modal"
+        class="modal"
+        onclick="fermerSiFond(event)"
+    >
+
+        <div class="modal-contenu">
+
+            <button
+                type="button"
+                class="fermer"
+                onclick="fermerActivite()"
+                title="Fermer"
+            >
+                ×
+            </button>
+
+            <iframe
+                id="iframe-jupyter"
+                title="Activité Jupyter"
+                allow="cross-origin-isolated"
+            >
+            </iframe>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        function ouvrirActivite(path) {
+
+            const iframe =
+                document.getElementById("iframe-jupyter");
+
+            iframe.src =
+                "https://pierremaujonnet.github.io/jupyterlite_pmauj/notebooks/index.html?path="
+                + encodeURIComponent(path);
+
+            document
+                .getElementById("modal")
+                .style.display = "flex";
+
+            document.body.style.overflow = "hidden";
+        }
+
+
+        function fermerActivite() {
+
+            document
+                .getElementById("modal")
+                .style.display = "none";
+
+            document
+                .getElementById("iframe-jupyter")
+                .src = "";
+
+            document.body.style.overflow = "";
+        }
+
+
+        function fermerSiFond(event) {
+
+            if (event.target.id === "modal") {
+                fermerActivite();
+            }
+        }
+
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+                    fermerActivite();
+                }
+            }
+        );
+
+    </script>
 
 </body>
 
