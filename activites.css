@@ -1,3 +1,7 @@
+/* =========================================================
+   BASE
+   ========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -15,20 +19,37 @@ h1 {
     margin-bottom: 2rem;
 }
 
-
 /* =========================================================
    MENU
+   Structure : .menu-principal > .titre-menu-principal > ul
    ========================================================= */
 
 .menu {
+     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    gap: 0.5rem 2rem;
     max-width: 1200px;
-    margin: 0 auto 2rem auto;
-
+    margin: 0 auto 2rem;
+    padding: 1rem 1.5rem;
     background: white;
     border-radius: 12px;
-    padding: 1rem 1.5rem;
-
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.menu-principal {
+    position: relative;
+    min-width: 0;
+    max-width: 100%;
+}
+
+.titre-menu-principal {
+    padding: 0.4rem 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #222;
+    cursor: pointer;
 }
 
 .menu ul {
@@ -37,68 +58,77 @@ h1 {
     padding-left: 1.2rem;
 }
 
-.menu > .menu-principal > ul {
-    padding-left: 0;
+/* La liste principale est repliee au depart. */
+.titre-menu-principal > ul {
+    display: none;
+     position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 10;
+    width: max-content;
+    min-width: 100%;
+    max-width: min(26rem, calc(100vw - 4rem));
+    padding: 0.5rem 1rem;
+    background: white;
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+    font-size: 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    cursor: default;
+}
+
+/* Le survol des sous-dossiers maintient la rubrique ouverte. */
+.titre-menu-principal:hover > ul,
+.titre-menu-principal:focus-within > ul {
+    display: block;
 }
 
 .menu li {
     margin: 0.25rem 0;
 }
 
-.menu-principal {
-    margin-bottom: 1rem;
-}
-
-.menu-principal:last-child {
-    margin-bottom: 0;
-}
-
-.titre-menu-principal {
-    font-size: 1.05rem;
-    font-weight: 700;
-
-    margin-bottom: 0.35rem;
-
-    color: #222;
-}
-
 .nom-dossier {
     display: block;
-
-    padding: 0.25rem 0;
-
+    padding: 0.35rem 0;
     font-weight: 600;
     color: #555;
 }
 
-
-/* Dossiers contenant directement des notebooks */
-
 .bouton-dossier {
+    display: block;
+    max-width: 100%;
+    padding: 0.4rem 0;
     border: none;
     background: none;
-
-    padding: 0.25rem 0;
-
     font: inherit;
     color: #2767a5;
-
-    cursor: pointer;
-
     text-align: left;
+    overflow-wrap: anywhere;
+    cursor: pointer;
 }
 
 .bouton-dossier:hover {
     text-decoration: underline;
 }
 
-.sous-menu {
+.menu .sous-menu {
     margin-top: 0.2rem;
 }
 
+/* Sur ecran tactile, les listes restent accessibles sans survol. */
+@media (hover: none) {
+    .titre-menu-principal > ul {
+        display: block;
+    }
+
+    .titre-menu-principal {
+        cursor: default;
+    }
+}
 
 /* =========================================================
-   CONTENU
+   CONTENU ET CARTES
    ========================================================= */
 
 main {
@@ -111,86 +141,62 @@ main {
 }
 
 .titre-section {
-    margin: 0 0 1.2rem 0;
-
+    margin: 0 0 1.2rem;
     font-size: 1.15rem;
     font-weight: 600;
-
     color: #555;
+    overflow-wrap: anywhere;
 }
-
-
-/* =========================================================
-   GRILLE DES CARTES
-   ========================================================= */
 
 .grille {
     display: grid;
-
-    grid-template-columns:
-        repeat(auto-fit, minmax(260px, 1fr));
-
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
     gap: 1.5rem;
 }
 
-
-/* =========================================================
-   CARTES
-   ========================================================= */
-
 .carte {
-    background: white;
-
-    border-radius: 12px;
-
-    padding: 1.5rem;
-
-    box-shadow:
-        0 3px 12px rgba(0, 0, 0, 0.08);
-
     display: flex;
     flex-direction: column;
+    min-width: 0;
+    padding: 1.5rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    overflow-wrap: anywhere;
 }
 
 .carte h2 {
     margin: 0.5rem 0;
-
     font-size: 1.3rem;
 }
 
 .carte p {
     flex-grow: 1;
-
     margin-top: 0.5rem;
-
     line-height: 1.5;
 }
 
-
-/* =========================================================
-   BOUTON OUVRIR
-   ========================================================= */
-
 .carte button {
     margin-top: 1rem;
-
     padding: 0.7rem 1rem;
-
     border: none;
     border-radius: 6px;
-
     background: #2767a5;
     color: white;
-
+    font-family: inherit;
     font-size: 1rem;
-
     cursor: pointer;
 }
 
 .carte button:hover {
-    opacity: 0.9;
+    background: #205789;
 }
 
+.bouton-dossier:focus-visible,
+.carte button:focus-visible {
+    outline: 3px solid #2767a5;
+    outline-offset: 3px;
+}
 
 /* =========================================================
    ZONE JUPYTER
@@ -198,26 +204,22 @@ main {
 
 .zone-jupyter {
     display: none;
-
     margin-top: 2rem;
 }
 
 .zone-jupyter iframe {
     display: block;
-
     width: 100%;
     height: 850px;
-
     border: 1px solid #ddd;
+    background: white;
 }
 
-
 /* =========================================================
-   PETITS ÉCRANS
+   PETITS ECRANS
    ========================================================= */
 
 @media (max-width: 700px) {
-
     body {
         padding: 1rem;
     }
@@ -230,7 +232,7 @@ main {
         grid-template-columns: 1fr;
     }
 
-    .zone-jupyter iframe {
-        height: 850px;
+    .carte {
+        padding: 1.2rem;
     }
 }

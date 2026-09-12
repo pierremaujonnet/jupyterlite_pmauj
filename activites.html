@@ -34,26 +34,15 @@
 
             <div class="titre-menu-principal">
                 Cours
-            </div>
 
-            <ul>
-        
-            <li>
-                <button
-                    class="bouton-dossier"
-                    type="button"
-                    onclick="afficherDossier('dossier-cours')"
-                >
-                    Cours
-                </button>
-            </li>
-            <li>
+                <ul>
+        <li>
             <button
                 class="bouton-dossier"
                 type="button"
-                onclick="afficherDossier('dossier-cours-Bibliotheques-utiles')"
+                onclick="afficherDossier('dossier-cours-Bibliothèques-utiles')"
             >
-                Bibliotheques Utiles
+                Bibliothèques Utiles
             </button>
             </li><li>
             <button
@@ -67,9 +56,17 @@
             <button
                 class="bouton-dossier"
                 type="button"
-                onclick="afficherDossier('dossier-cours-Par-theme')"
+                onclick="afficherDossier('dossier-cours-Par-thème')"
             >
-                Par Theme
+                Par Thème
+            </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('dossier-cours-Synthèse')"
+            >
+                Synthèse
             </button>
             </li><li>
             <button
@@ -80,16 +77,16 @@
                 Variables Et Fonctions
             </button>
             </li>
-            </ul>
+                </ul>
+            </div>
         </div>
         
         <div class="menu-principal">
 
             <div class="titre-menu-principal">
                 Exercices
-            </div>
 
-            <ul>
+                <ul>
         <li>
             <button
                 class="bouton-dossier"
@@ -131,7 +128,8 @@
                 Exercices Première
             </button>
             </li>
-            </ul>
+                </ul>
+            </div>
         </div>
         
 
@@ -142,47 +140,12 @@
 
         
             <section
-                id="dossier-cours"
+                id="dossier-cours-Bibliothèques-utiles"
                 class="section-cartes"
             >
 
                 <h2 class="titre-section">
-                    Cours
-                </h2>
-
-                <div class="grille">
-                    
-            <article class="carte">
-
-                <h2>
-                    Synthese Instructions Python
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/synthese-instructions-python.ipynb&quot;,
-                        &quot;Synthese Instructions Python&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-                </div>
-
-            </section>
-            
-            <section
-                id="dossier-cours-Bibliotheques-utiles"
-                class="section-cartes"
-            >
-
-                <h2 class="titre-section">
-                    Cours / Bibliotheques Utiles
+                    Cours / Bibliothèques Utiles
                 </h2>
 
                 <div class="grille">
@@ -198,7 +161,7 @@
                 <button
                     type="button"
                     onclick="ouvrirActivite(
-                        &quot;cours/Bibliotheques_utiles/bibliotheque-numpy.ipynb&quot;,
+                        &quot;cours/Biblioth\u00e8ques_utiles/bibliotheque-numpy.ipynb&quot;,
                         &quot;Qu&#x27;est-ce que NumPy ?&quot;
                     )"
                 >
@@ -218,7 +181,7 @@
                 <button
                     type="button"
                     onclick="ouvrirActivite(
-                        &quot;cours/Bibliotheques_utiles/bibliotheque-sympy.ipynb&quot;,
+                        &quot;cours/Biblioth\u00e8ques_utiles/bibliotheque-sympy.ipynb&quot;,
                         &quot;Qu&#x27;est-ce que SymPy ?&quot;
                     )"
                 >
@@ -238,7 +201,7 @@
                 <button
                     type="button"
                     onclick="ouvrirActivite(
-                        &quot;cours/Bibliotheques_utiles/initiation-a-matplotlib.ipynb&quot;,
+                        &quot;cours/Biblioth\u00e8ques_utiles/initiation-a-matplotlib.ipynb&quot;,
                         &quot;Qu&#x27;est-ce que Matplotlib ?&quot;
                     )"
                 >
@@ -307,12 +270,12 @@
             </section>
             
             <section
-                id="dossier-cours-Par-theme"
+                id="dossier-cours-Par-thème"
                 class="section-cartes"
             >
 
                 <h2 class="titre-section">
-                    Cours / Par Theme
+                    Cours / Par Thème
                 </h2>
 
                 <div class="grille">
@@ -328,8 +291,43 @@
                 <button
                     type="button"
                     onclick="ouvrirActivite(
-                        &quot;cours/Par_theme/python-pour-les-suites.ipynb&quot;,
+                        &quot;cours/Par_th\u00e8me/python-pour-les-suites.ipynb&quot;,
                         &quot;Calculs usuels&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-cours-Synthèse"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Cours / Synthèse
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Synthese Instructions Python
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;cours/Synth\u00e8se/synthese-instructions-python.ipynb&quot;,
+                        &quot;Synthese Instructions Python&quot;
                     )"
                 >
                     Ouvrir
@@ -832,7 +830,7 @@
                     });
 
                 const premier =
-                    "dossier-cours";
+                    "dossier-cours-Bibliothèques-utiles";
 
                 if (premier) {
                     afficherDossier(
