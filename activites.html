@@ -102,9 +102,33 @@
             <button
                 class="bouton-dossier"
                 type="button"
+                onclick="afficherDossier('dossier-exercices-Divers-exercices')"
+            >
+                Divers Exercices
+            </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
                 onclick="afficherDossier('dossier-exercices-Exercices-fonctions')"
             >
                 Exercices Fonctions
+            </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('dossier-exercices-Exercices-maths-expertes')"
+            >
+                Exercices Maths Expertes
+            </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('dossier-exercices-Exercices-première')"
+            >
+                Exercices Première
             </button>
             </li>
             </ul>
@@ -468,6 +492,41 @@
             </section>
             
             <section
+                id="dossier-exercices-Divers-exercices"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Exercices / Divers Exercices
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Exercices Petits Problemes
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;exercices/Divers_exercices/exercices-petits-problemes.ipynb&quot;,
+                        &quot;Exercices Petits Problemes&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
                 id="dossier-exercices-Exercices-fonctions"
                 class="section-cartes"
             >
@@ -551,6 +610,96 @@
                     onclick="ouvrirActivite(
                         &quot;exercices/Exercices_fonctions/exercices-fonctions-python-et-fonctions-mathematiques.ipynb&quot;,
                         &quot;Exercices Fonctions Python Et Fonctions Mathematiques&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-exercices-Exercices-maths-expertes"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Exercices / Exercices Maths Expertes
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Exercices Matrices Numpy
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;exercices/Exercices_maths_expertes/exercices-matrices-numpy.ipynb&quot;,
+                        &quot;Exercices Matrices Numpy&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-exercices-Exercices-première"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Exercices / Exercices Première
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Exercices Suites 1
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;exercices/Exercices_premi\u00e8re/exercices-suites-1.ipynb&quot;,
+                        &quot;Exercices Suites 1&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Exercices Suites 2
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;exercices/Exercices_premi\u00e8re/exercices-suites-2.ipynb&quot;,
+                        &quot;Exercices Suites 2&quot;
                     )"
                 >
                     Ouvrir
