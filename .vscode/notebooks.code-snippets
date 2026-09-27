@@ -1,15 +1,14 @@
 {
-    "Encadre notebook": {
-        "scope": "markdown,html",
+    "Encadre bleu notebook": {
         "prefix": "encadre",
         "body": [
             "<div style=\"",
-            "    display:inline-block;",
-            "    border:3px double #2b2b2b;",
-            "    border-radius:1rem;",
+            "    border:1px solid #b8c7d9;",
+            "    border-left:4px solid #4a78a8;",
+            "    border-radius:0.5rem;",
             "    padding:0.8rem 1rem;",
             "    margin:1rem 0;",
-            "    background:#ddd;",
+            "    background:#f3f7fb;",
             "    color:#2b2b2b;",
             "\">",
             "",
@@ -17,6 +16,6 @@
             "",
             "</div>"
         ],
-        "description": "Encadré HTML pour notebook"
+        "description": "Encadré bleu discret pour notebook"
     }
 }
