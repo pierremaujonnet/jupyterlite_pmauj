@@ -1,0 +1,22 @@
+{
+    "Encadre notebook": {
+        "scope": "markdown,html",
+        "prefix": "encadre",
+        "body": [
+            "<div style=\"",
+            "    display:inline-block;",
+            "    border:3px double #2b2b2b;",
+            "    border-radius:1rem;",
+            "    padding:0.8rem 1rem;",
+            "    margin:1rem 0;",
+            "    background:#ddd;",
+            "    color:#2b2b2b;",
+            "\">",
+            "",
+            "    $0",
+            "",
+            "</div>"
+        ],
+        "description": "Encadré HTML pour notebook"
+    }
+}

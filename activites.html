@@ -64,14 +64,6 @@
             <button
                 class="bouton-dossier"
                 type="button"
-                onclick="afficherDossier('dossier-cours-synthese')"
-            >
-                Eléments de synthèse
-            </button>
-            </li><li>
-            <button
-                class="bouton-dossier"
-                type="button"
                 onclick="afficherDossier('dossier-cours-Variables-et-fonctions')"
             >
                 Variables et fonctions
@@ -130,6 +122,33 @@
                 onclick="afficherDossier('dossier-exercices-Exercices-première')"
             >
                 Exercices de première
+            </button>
+            </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="menu-principal">
+
+            <div class="titre-menu-principal">
+                Eléments de synthèse
+
+                <ul>
+        <li>
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('dossier-synthese-fiches-synthese')"
+            >
+                Fiches de synthèse
+            </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
+                onclick="afficherDossier('dossier-synthese-programmes-du-programme')"
+            >
+                Programmes du programme
             </button>
             </li>
                 </ul>
@@ -297,101 +316,6 @@
                     onclick="ouvrirActivite(
                         &quot;cours/Par_the\u0300me/python-pour-les-suites.ipynb&quot;,
                         &quot;Calculs usuels&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-                </div>
-
-            </section>
-            
-            <section
-                id="dossier-cours-synthese"
-                class="section-cartes"
-            >
-
-                <h2 class="titre-section">
-                    Cours / Eléments de synthèse
-                </h2>
-
-                <div class="grille">
-                    
-            <article class="carte">
-
-                <h2>
-                    Programmes du programme de première
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/synthese/Programmes_du_programme_premiere.ipynb&quot;,
-                        &quot;Programmes du programme de premi\u00e8re&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <h2>
-                    Programmes du programme de seconde
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/synthese/Programmes_du_programme_seconde.ipynb&quot;,
-                        &quot;Programmes du programme de seconde&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <h2>
-                    Programmes du programme de terminale
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/synthese/Programmes_du_programme_terminale.ipynb&quot;,
-                        &quot;Programmes du programme de terminale&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <h2>
-                    Synthese instructions python
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/synthese/synthese-instructions-python.ipynb&quot;,
-                        &quot;Synthese instructions python&quot;
                     )"
                 >
                     Ouvrir
@@ -762,6 +686,136 @@
                     onclick="ouvrirActivite(
                         &quot;exercices/Exercices_premie\u0300re/exercices-suites-2.ipynb&quot;,
                         &quot;Exercices suites 2&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-synthese-fiches-synthese"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Eléments de synthèse / Fiches de synthèse
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Synthese instructions python copy
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;synthese/fiches-synthese/synthese-instructions-python copy.ipynb&quot;,
+                        &quot;Synthese instructions python copy&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Synthese instructions python
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;synthese/fiches-synthese/synthese-instructions-python.ipynb&quot;,
+                        &quot;Synthese instructions python&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
+                id="dossier-synthese-programmes-du-programme"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Eléments de synthèse / Programmes du programme
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Programmes du programme de première
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;synthese/programmes_du_programme/Programmes_du_programme_premiere.ipynb&quot;,
+                        &quot;Programmes du programme de premi\u00e8re&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Programmes du programme de seconde
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;synthese/programmes_du_programme/Programmes_du_programme_seconde.ipynb&quot;,
+                        &quot;Programmes du programme de seconde&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Programmes du programme de terminale
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;synthese/programmes_du_programme/Programmes_du_programme_terminale.ipynb&quot;,
+                        &quot;Programmes du programme de terminale&quot;
                     )"
                 >
                     Ouvrir

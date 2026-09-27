@@ -11,19 +11,22 @@ DOSSIERS_PUBLICS = [
     "cours",
     "exercices",
     "devoirs",
-    "activites"
+    "activites",
+    "synthese"
 ]
 
 NOMS_DOSSIERS = {
     # Dossiers principaux
     "cours": "Cours",
     "exercices": "Exercices",
+    "synthese": "Eléments de synthèse",    
     # Sous-dossiers de cours/
     "bibliotheques-utiles": "Bibliothèques utiles",
     "instructions-conditionnelles-et-boucles": "Instructions conditionnelles et boucles",
     "par-theme": "Par thème",
-    "synthese": "Eléments de synthèse",
     "variables-et-fonctions": "Variables et fonctions",
+    "programmes_du_programme": "Programmes du programme",
+    "fiches-synthese": "Fiches de synthèse",
     # Sous-dossiers de exercices/
     "conditions-et-boucles": "Conditions et boucles",
     "divers-exercices": "Exercices divers",
