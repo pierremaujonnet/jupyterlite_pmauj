@@ -1,6 +1,7 @@
 from pathlib import Path
 import json
 import html
+import unicodedata
 
 # ============================================================
 # À MODIFIER UNIQUEMENT ICI
@@ -12,6 +13,25 @@ DOSSIERS_PUBLICS = [
     "devoirs",
     "activites"
 ]
+
+NOMS_DOSSIERS = {
+    # Dossiers principaux
+    "cours": "Cours",
+    "exercices": "Exercices",
+    # Sous-dossiers de cours/
+    "bibliotheques-utiles": "Bibliothèques utiles",
+    "instructions-conditionnelles-et-boucles": "Instructions conditionnelles et boucles",
+    "par-theme": "Par thème",
+    "synthese": "Eléments de synthèse",
+    "variables-et-fonctions": "Variables et fonctions",
+    # Sous-dossiers de exercices/
+    "conditions-et-boucles": "Conditions et boucles",
+    "divers-exercices": "Exercices divers",
+    "exercices-classiques": "Exercices classiques",
+    "exercices-fonctions": "Fonctions",
+    "exercices-maths-expertes": "Maths expertes",
+    "exercices-premiere": "Exercices de première",
+}
 
 # ============================================================
 # NE PLUS TOUCHER AU RESTE
@@ -25,19 +45,46 @@ URL_JUPYTERLITE = (
     "jupyterlite_pmauj/notebooks/index.html?path="
 )
 
+def cle_nom(nom):
+    """
+    Normalise un nom de dossier pour la recherche dans NOMS_DOSSIERS :
+    minuscules, sans accents, tirets à la place des « _ » et des espaces.
+    Ainsi « Exercices_première », « exercices-premiere »
+    ou « Exercices Premiere » donnent tous « exercices-premiere ».
+    """
+    texte = unicodedata.normalize("NFD", nom)
+    texte = "".join(c for c in texte if unicodedata.category(c) != "Mn")
+    texte = texte.lower().replace("_", "-").replace(" ", "-")
+    while "--" in texte:
+        texte = texte.replace("--", "-")
+    return texte.strip("-")
+
+# def nom_affiche(nom):
+#     """
+#     Transforme un nom de dossier en texte lisible.
+#     """
+#     return (
+#         nom
+#         .replace("_", " ")
+#         .replace("-", " ")
+#         .strip()
+#         .title()
+#     )
 
 def nom_affiche(nom):
     """
-    Transforme un nom de dossier en texte lisible.
+    Renvoie le libellé à afficher pour un dossier ou un fichier :
+    - celui défini dans NOMS_DOSSIERS s'il existe ;
+    - sinon le nom nettoyé, avec une majuscule au premier mot seulement.
     """
-    return (
-        nom
-        .replace("_", " ")
-        .replace("-", " ")
-        .strip()
-        .title()
-    )
+    libelle = NOMS_DOSSIERS.get(cle_nom(nom))
+    if libelle is not None:
+        return libelle
 
+    texte = unicodedata.normalize("NFC", nom)
+    texte = texte.replace("_", " ").replace("-", " ")
+    texte = " ".join(texte.split())
+    return texte[:1].upper() + texte[1:]
 
 def informations_notebook(fichier):
     """

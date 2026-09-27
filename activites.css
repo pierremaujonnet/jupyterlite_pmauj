@@ -61,7 +61,7 @@ h1 {
 /* La liste principale est repliee au depart. */
 .titre-menu-principal > ul {
     display: none;
-     position: absolute;
+    position: absolute;
     top: 100%;
     left: 0;
     z-index: 10;
@@ -72,7 +72,6 @@ h1 {
     background: white;
     border-radius: 0 0 8px 8px;
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
-    font-size: 1rem;
     font-size: 1rem;
     font-weight: 400;
     cursor: default;
@@ -117,11 +116,22 @@ h1 {
 }
 
 /* Sur ecran tactile, les listes restent accessibles sans survol. */
-@media (hover: none) {
+/* @media (hover: none) {
     .titre-menu-principal > ul {
         display: block;
     }
 
+    .titre-menu-principal {
+        cursor: default;
+    }
+} */
+@media (hover: none) {
+    .titre-menu-principal > ul {
+        display: block;
+        position: static;
+        box-shadow: none;
+        padding: 0.25rem 0 0 1.2rem;
+    }
     .titre-menu-principal {
         cursor: default;
     }
@@ -142,7 +152,7 @@ main {
 
 .titre-section {
     margin: 0 0 1.2rem;
-    font-size: 1.15rem;
+    font-size: 1.4rem;
     font-weight: 600;
     color: #555;
     overflow-wrap: anywhere;
@@ -150,7 +160,8 @@ main {
 
 .grille {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     gap: 1.5rem;
 }
 
@@ -159,6 +170,7 @@ main {
     flex-direction: column;
     min-width: 0;
     padding: 1.5rem;
+    gap: 1rem; 
     background: white;
     border-radius: 12px;
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
@@ -177,7 +189,8 @@ main {
 }
 
 .carte button {
-    margin-top: 1rem;
+    margin-top: auto; 
+    /* margin-top: 1rem; */
     padding: 0.7rem 1rem;
     border: none;
     border-radius: 6px;
