@@ -27,6 +27,8 @@ NOMS_DOSSIERS = {
     "variables-et-fonctions": "Variables et fonctions",
     "programmes_du_programme": "Programmes du programme",
     "fiches-synthese": "Fiches de synthèse",
+    "Bases_du_langage": "Bases du langage",
+    "Par_theme": "Par thème",
     # Sous-dossiers de exercices/
     "conditions-et-boucles": "Conditions et boucles",
     "divers-exercices": "Exercices divers",
