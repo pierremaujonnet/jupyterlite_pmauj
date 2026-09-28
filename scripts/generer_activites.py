@@ -35,7 +35,7 @@ NOMS_DOSSIERS = {
     "exercices-classiques": "Exercices classiques",
     "exercices-fonctions": "Fonctions",
     "exercices-maths-expertes": "Maths expertes",
-    "exercices-premiere": "Exercices de première",
+    "Exercices_premiere": "Exercices de première",
 }
 
 # ============================================================

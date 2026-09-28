@@ -17,5 +17,18 @@
             "</div>"
         ],
         "description": "Encadré bleu discret pour notebook"
-    }
+    },
+    "Style des solutions déroulantes": {
+    "prefix": "solution",
+    "body": [
+        "<style>",
+        "    summary {",
+        "        color: purple;",
+        "        cursor: pointer;",
+        "        font-weight: bold;",
+        "    }",
+        "</style>"
+    ],
+    "description": "Ajoute le style des balises summary pour les solutions déroulantes"
+}
 }
