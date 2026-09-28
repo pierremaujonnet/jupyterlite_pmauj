@@ -40,6 +40,14 @@
             <button
                 class="bouton-dossier"
                 type="button"
+                onclick="afficherDossier('dossier-cours-Bases-du-langage')"
+            >
+                Bases du langage
+            </button>
+            </li><li>
+            <button
+                class="bouton-dossier"
+                type="button"
                 onclick="afficherDossier('dossier-cours-bibliotheques-utiles')"
             >
                 Bibliothèques utiles
@@ -56,17 +64,9 @@
             <button
                 class="bouton-dossier"
                 type="button"
-                onclick="afficherDossier('dossier-cours-Par-thème')"
+                onclick="afficherDossier('dossier-cours-Par-theme')"
             >
                 Par thème
-            </button>
-            </li><li>
-            <button
-                class="bouton-dossier"
-                type="button"
-                onclick="afficherDossier('dossier-cours-Variables-et-fonctions')"
-            >
-                Variables et fonctions
             </button>
             </li>
                 </ul>
@@ -163,6 +163,101 @@
 
         
             <section
+                id="dossier-cours-Bases-du-langage"
+                class="section-cartes"
+            >
+
+                <h2 class="titre-section">
+                    Cours / Bases du langage
+                </h2>
+
+                <div class="grille">
+                    
+            <article class="carte">
+
+                <h2>
+                    Chaînes de caractères
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;cours/Bases_du_langage/chaines-de-caracteres.ipynb&quot;,
+                        &quot;Cha\u00eenes de caract\u00e8res&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Fonctions en Python
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;cours/Bases_du_langage/fonctions-en-python.ipynb&quot;,
+                        &quot;Fonctions en Python&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Listes en Python
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;cours/Bases_du_langage/listes-en-python.ipynb&quot;,
+                        &quot;Listes en Python&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+            <article class="carte">
+
+                <h2>
+                    Types et variables
+                </h2>
+
+                
+
+                <button
+                    type="button"
+                    onclick="ouvrirActivite(
+                        &quot;cours/Bases_du_langage/types-et-variables.ipynb&quot;,
+                        &quot;Types et variables&quot;
+                    )"
+                >
+                    Ouvrir
+                </button>
+
+            </article>
+            
+                </div>
+
+            </section>
+            
+            <section
                 id="dossier-cours-bibliotheques-utiles"
                 class="section-cartes"
             >
@@ -176,7 +271,7 @@
             <article class="carte">
 
                 <h2>
-                    Qu&#x27;est-ce que NumPy ?
+                    Bibliothèque Numpy
                 </h2>
 
                 
@@ -185,7 +280,7 @@
                     type="button"
                     onclick="ouvrirActivite(
                         &quot;cours/bibliotheques-utiles/bibliotheque-numpy.ipynb&quot;,
-                        &quot;Qu&#x27;est-ce que NumPy ?&quot;
+                        &quot;Biblioth\u00e8que Numpy&quot;
                     )"
                 >
                     Ouvrir
@@ -196,7 +291,7 @@
             <article class="carte">
 
                 <h2>
-                    Qu&#x27;est-ce que SymPy ?
+                    Bibliothèque SymPy
                 </h2>
 
                 
@@ -205,7 +300,7 @@
                     type="button"
                     onclick="ouvrirActivite(
                         &quot;cours/bibliotheques-utiles/bibliotheque-sympy.ipynb&quot;,
-                        &quot;Qu&#x27;est-ce que SymPy ?&quot;
+                        &quot;Biblioth\u00e8que SymPy&quot;
                     )"
                 >
                     Ouvrir
@@ -216,7 +311,7 @@
             <article class="carte">
 
                 <h2>
-                    Qu&#x27;est-ce que Matplotlib ?
+                    Initiation à Matplotlib
                 </h2>
 
                 
@@ -225,7 +320,7 @@
                     type="button"
                     onclick="ouvrirActivite(
                         &quot;cours/bibliotheques-utiles/initiation-a-matplotlib.ipynb&quot;,
-                        &quot;Qu&#x27;est-ce que Matplotlib ?&quot;
+                        &quot;Initiation \u00e0 Matplotlib&quot;
                     )"
                 >
                     Ouvrir
@@ -251,7 +346,7 @@
             <article class="carte">
 
                 <h2>
-                    Boucle `while`
+                    Boucles
                 </h2>
 
                 
@@ -260,7 +355,7 @@
                     type="button"
                     onclick="ouvrirActivite(
                         &quot;cours/Instructions_conditionnelles_et_boucles/boucles.ipynb&quot;,
-                        &quot;Boucle `while`&quot;
+                        &quot;Boucles&quot;
                     )"
                 >
                     Ouvrir
@@ -271,7 +366,7 @@
             <article class="carte">
 
                 <h2>
-                    Instructions conditionnelles
+                    Instructions conditionnelles et variables booléennes
                 </h2>
 
                 
@@ -280,7 +375,7 @@
                     type="button"
                     onclick="ouvrirActivite(
                         &quot;cours/Instructions_conditionnelles_et_boucles/instructions-conditionnelles-et-variables-booleennes.ipynb&quot;,
-                        &quot;Instructions conditionnelles&quot;
+                        &quot;Instructions conditionnelles et variables bool\u00e9ennes&quot;
                     )"
                 >
                     Ouvrir
@@ -293,7 +388,7 @@
             </section>
             
             <section
-                id="dossier-cours-Par-thème"
+                id="dossier-cours-Par-theme"
                 class="section-cartes"
             >
 
@@ -306,7 +401,7 @@
             <article class="carte">
 
                 <h2>
-                    Calculs usuels
+                    Python pour les suites
                 </h2>
 
                 
@@ -314,103 +409,8 @@
                 <button
                     type="button"
                     onclick="ouvrirActivite(
-                        &quot;cours/Par_the\u0300me/python-pour-les-suites.ipynb&quot;,
-                        &quot;Calculs usuels&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-                </div>
-
-            </section>
-            
-            <section
-                id="dossier-cours-Variables-et-fonctions"
-                class="section-cartes"
-            >
-
-                <h2 class="titre-section">
-                    Cours / Variables et fonctions
-                </h2>
-
-                <div class="grille">
-                    
-            <article class="carte">
-
-                <h2>
-                    Création d&#x27;une chaîne de caractères
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/Variables_et_fonctions/chaines-de-caracteres.ipynb&quot;,
-                        &quot;Cr\u00e9ation d&#x27;une cha\u00eene de caract\u00e8res&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <h2>
-                    Fonctions en Python
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/Variables_et_fonctions/fonctions-en-python.ipynb&quot;,
-                        &quot;Fonctions en Python&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <h2>
-                    Création d&#x27;une liste - Accès aux éléments
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/Variables_et_fonctions/listes-en-python.ipynb&quot;,
-                        &quot;Cr\u00e9ation d&#x27;une liste - Acc\u00e8s aux \u00e9l\u00e9ments&quot;
-                    )"
-                >
-                    Ouvrir
-                </button>
-
-            </article>
-            
-            <article class="carte">
-
-                <h2>
-                    Types et variables
-                </h2>
-
-                
-
-                <button
-                    type="button"
-                    onclick="ouvrirActivite(
-                        &quot;cours/Variables_et_fonctions/types-et-variables.ipynb&quot;,
-                        &quot;Types et variables&quot;
+                        &quot;cours/Par_theme/python-pour-les-suites.ipynb&quot;,
+                        &quot;Python pour les suites&quot;
                     )"
                 >
                     Ouvrir
@@ -948,7 +948,7 @@
                     });
 
                 const premier =
-                    "dossier-cours-bibliotheques-utiles";
+                    "dossier-cours-Bases-du-langage";
 
                 if (premier) {
                     afficherDossier(
